@@ -1,12 +1,10 @@
 // packages / index.js
 
 // 导入单个组件
-import AlertMsg from './minialert/index.js'
+import AlertMsg from './minialert/index'
 
 // 以数组的结构保存组件，便于遍历
-const components = [
-  AlertMsg
-]
+const components = []
 
 // 定义 install 方法
 const install = function (Vue) {
@@ -16,6 +14,9 @@ const install = function (Vue) {
   components.map(component => {
     Vue.component(component.name, component)
   })
+
+  Vue.prototype.$message = AlertMsg;
+
 
 }
 

@@ -1,8 +1,7 @@
 <template>
   <div id="app">
     <h1>测试alert</h1>
-    <button @click="alertMsg()">弹出消息</button>
-    <msg-box />
+    <button @click="alertMsg()" style="margin-left: 80%">弹出消息</button>
   </div>
 </template>
 
@@ -12,7 +11,7 @@ export default {
   components: {},
   methods: {
     alertMsg() {
-      this.$store.commit('alertMsg', '猜测消息')
+      this.$message('这是一条消息提示')
     }
   }
 }

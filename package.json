@@ -1,6 +1,6 @@
 {
   "name": "vue-mimi-alert",
-  "version": "0.4.3",
+  "version": "0.9.0",
   "private": false,
   "keyword": "alert",
   "author": "zzx",
@@ -12,6 +12,10 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "lib": "vue-cli-service build --target lib --name mimi-alert --dest lib packages/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ynqc/toast.git"
   },
   "dependencies": {
     "core-js": "^2.6.5",
