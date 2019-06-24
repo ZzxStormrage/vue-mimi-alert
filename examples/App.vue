@@ -11,7 +11,7 @@ export default {
   components: {},
   methods: {
     alertMsg() {
-      this.$message('这是一条消息提示')
+      this.$mimialert('这是一条消息提示')
     }
   }
 }
