@@ -16,15 +16,18 @@ const Message = function (options) {
       message: options
     };
   }
+
+  instance = new MessageConstructor({
+    data: options
+  });
+
   let userOnClose = options.onClose;
   let id = 'message_' + seed++;
 
   options.onClose = function () {
     Message.close(id, userOnClose);
   };
-  instance = new MessageConstructor({
-    data: options
-  });
+
   instance.id = id;
   // if (isVNode(instance.message)) {
   //   instance.$slots.default = [instance.message];

@@ -38,7 +38,8 @@ export default {
       closed: false,
       verticalOffset: 20,
       timer: null,
-      center: false
+      center: false,
+      iconClass: ''
     }
   },
 
@@ -109,7 +110,7 @@ export default {
 .alert-message {
   min-width: 100px;
   box-sizing: border-box;
-  border-radius: 3px;
+  border-radius: 2px;
   position: fixed;
   left: 50%;
   top: 20px;

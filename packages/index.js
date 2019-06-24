@@ -17,7 +17,6 @@ const install = function (Vue) {
 
   Vue.prototype.$message = AlertMsg;
 
-
 }
 
 if (typeof window !== 'undefined' && window.Vue) {
