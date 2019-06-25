@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:ynqc/toast.git"
+    "url": "git@github.com:ZzxStormrage/vue-mimi-alert.git"
   },
   "dependencies": {
     "core-js": "^2.6.5",
