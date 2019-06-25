@@ -1,12 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
-// import MimiAlert from '../packages/minialert/index'
-import Msg from '../packages/msg/index'
+import MimiAlert from '../packages/minialert/index'
 
-// Vue.prototype.$mimialert = MimiAlert
-Vue.prototype.$msg = Msg
-// Vue.use(MimiAlert)
-// Vue.use(Msg)
+Vue.prototype.$msg = MimiAlert
+
 
 new Vue({
   render: h => h(App),
