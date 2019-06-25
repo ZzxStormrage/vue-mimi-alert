@@ -11,6 +11,12 @@ module.exports = {
     }
   },
 
+  devServer: {
+    open: true,
+    host: '0.0.0.0',
+    port: 8082,
+  },
+
   publicPath: undefined,
   outputDir: undefined,
   assetsDir: undefined,

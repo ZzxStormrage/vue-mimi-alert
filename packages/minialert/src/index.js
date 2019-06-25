@@ -1,89 +1,67 @@
-import Vue from 'vue';
-import Main from './main.vue';
-// import { PopupManager } from 'element-ui/src/utils/popup';
-// import { isVNode } from 'element-ui/src/utils/vdom';
-let MessageConstructor = Vue.extend(Main);
+/* eslint-disable no-console */
+import Vue from 'vue'
+import Msg from './main.vue'
 
-let instance;
-let instances = [];
-let seed = 1;
+let MsgConstructor = Vue.extend(Msg)
 
-const Message = function (options) {
-  if (Vue.prototype.$isServer) return;
-  options = options || {};
+let instance
+let instance_list = []
+let count = 0
+
+const alertMsg = function (options) {
+  options = options || {}
   if (typeof options === 'string') {
     options = {
       message: options
     };
   }
 
-  instance = new MessageConstructor({
-    data: options
-  });
-
   let userOnClose = options.onClose;
-  let id = 'message_' + seed++;
-
+  let id = 'message_' + count++;
   options.onClose = function () {
-    Message.close(id, userOnClose);
-  };
+    alertMsg.close(id, userOnClose)
+  }
 
-  instance.id = id;
-  // if (isVNode(instance.message)) {
-  //   instance.$slots.default = [instance.message];
-  //   instance.message = null;
-  // }
-  instance.$mount();
+  instance = new MsgConstructor({
+    data: options
+  })
+  instance.id = id
+  instance.$mount()
   document.body.appendChild(instance.$el);
-  let verticalOffset = options.offset || 20;
-  instances.forEach(item => {
-    verticalOffset += item.$el.offsetHeight + 16;
-  });
-  instance.verticalOffset = verticalOffset;
-  instance.visible = true;
-  // instance.$el.style.zIndex = PopupManager.nextZIndex();
-  instances.push(instance);
-  return instance;
-};
 
-['success', 'warning', 'info', 'error'].forEach(type => {
-  Message[type] = options => {
-    if (typeof options === 'string') {
-      options = {
-        message: options
-      };
-    }
-    options.type = type;
-    return Message(options);
-  };
-});
+  let el_offset = options.offset || 20
+  instance_list.forEach(item => {
+    el_offset += item.$el.offsetHeight + 12
+  })
+  instance.el_offset = el_offset
 
-Message.close = function (id, userOnClose) {
-  let len = instances.length;
-  let index = -1;
+  instance.show = true
+  instance_list.push(instance);
+  return instance
+}
+
+alertMsg.close = function (id, userOnClose) {
+  let len = instance_list.length
+  let index = -1
   for (let i = 0; i < len; i++) {
-    if (id === instances[i].id) {
-      index = i;
+
+    if (id === instance_list[i].id) {
+      index = i
+      console.log(index);
       if (typeof userOnClose === 'function') {
-        userOnClose(instances[i]);
+        userOnClose(instance_list[i]);
       }
-      instances.splice(i, 1);
-      break;
+      instance_list.splice(i, 1)
     }
+    break
   }
-  if (len <= 1 || index === -1 || index > instances.length - 1) return;
-  const removedHeight = instances[index].$el.offsetHeight;
-  for (let i = index; i < len - 1; i++) {
-    let dom = instances[i].$el;
-    dom.style['top'] =
-      parseInt(dom.style['top'], 10) - removedHeight - 16 + 'px';
-  }
-};
 
-Message.closeAll = function () {
-  for (let i = instances.length - 1; i >= 0; i--) {
-    instances[i].close();
-  }
-};
+  // for (let i = index; i < len.length - 1; i++) {
+  //   // const element = array[i];
 
-export default Message;
+  // }
+
+}
+
+
+export default alertMsg

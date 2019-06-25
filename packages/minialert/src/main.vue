@@ -1,71 +1,49 @@
 <template>
   <transition name="message-fade" @after-leave="handleAfterLeave">
-    <div :class="[
-        'alert-message',
-        type && !iconClass ? `el-message--${ type }` : '',
-        center ? 'is-center' : '',
-        showClose ? 'is-closable' : '',
-        customClass
-      ]"
-      :style="positionStyle" v-show="visible" @mouseenter="clearTimer"
-      @mouseleave="startTimer" role="alert">
-      <slot>
-        <p v-html="message" class="el-message__content"></p>
-      </slot>
-      <i v-if="showClose" class="el-message__closeBtn el-icon-close" @click="close"></i>
+    <div v-show="show" :style="positionStyle" :class="['alert-message']"
+      @mouseenter="clearTimer" @mouseleave="startTimer">
+      <p>{{message}}</p>
     </div>
   </transition>
 </template>
 
-<script type="text/babel">
-const typeMap = {
-  success: 'success',
-  info: 'info',
-  warning: 'warning',
-  error: 'error'
-}
-
+<script>
 export default {
+  props: [],
   data() {
     return {
-      visible: false,
       message: '',
+      show: false,
+      el_offset: 20,
       duration: 2000,
-      type: 'info',
-      customClass: '',
-      onClose: null,
-      showClose: false,
-      closed: false,
-      verticalOffset: 20,
       timer: null,
-      center: false,
-      iconClass: ''
+      closed: false,
+      onClose: null
     }
   },
-
+  components: {},
   computed: {
-    typeClass() {
-      return this.type && !this.iconClass ? `el-message__icon el-icon-${typeMap[this.type]}` : ''
-    },
     positionStyle() {
       return {
-        top: `${this.verticalOffset}px`
+        top: `${this.el_offset}px`
       }
     }
   },
-
   watch: {
     closed(newVal) {
       if (newVal) {
-        this.visible = false
+        this.show = false
       }
     }
   },
-
   methods: {
     handleAfterLeave() {
       this.$destroy(true)
       this.$el.parentNode.removeChild(this.$el)
+    },
+
+    clearTimer() {
+      clearTimeout(this.timer)
     },
 
     close() {
@@ -73,10 +51,6 @@ export default {
       if (typeof this.onClose === 'function') {
         this.onClose(this)
       }
-    },
-
-    clearTimer() {
-      clearTimeout(this.timer)
     },
 
     startTimer() {
@@ -87,31 +61,21 @@ export default {
           }
         }, this.duration)
       }
-    },
-    keydown(e) {
-      if (e.keyCode === 27) {
-        // esc关闭消息
-        if (!this.closed) {
-          this.close()
-        }
-      }
     }
   },
+  created() {},
   mounted() {
     this.startTimer()
-    document.addEventListener('keydown', this.keydown)
-  },
-  beforeDestroy() {
-    document.removeEventListener('keydown', this.keydown)
   }
 }
 </script>
-<style lang="scss" scoped>
+
+<style scoped lang="scss">
 .alert-message {
-  min-width: 100px;
+  // min-width: 100px;
   box-sizing: border-box;
   border-radius: 2px;
-  position: fixed;
+  position: absolute;
   left: 50%;
   top: 20px;
   height: 35px;
@@ -124,11 +88,10 @@ export default {
   padding: 3px 15px;
   display: flex;
   align-items: center;
-  .message-fade-enter,
-  .message-fade-leave-active {
-    opacity: 0;
-    transform: translate(-50%, -100%);
-  }
+}
+.message-fade-enter,
+.message-fade-leave-active {
+  opacity: 0;
+  transform: translate(-50%, -100%);
 }
 </style>
-

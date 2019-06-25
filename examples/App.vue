@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <h1>测试alert</h1>
-    <button @click="alertMsg()" style="margin-left: 80%">弹出消息</button>
+    <!-- <button @click="alertMsg()" style="margin-left: 80%">弹出消息</button> -->
+    <button @click="msg()" style="margin-left: 80%">新版弹出消息msg</button>
   </div>
 </template>
 
@@ -12,6 +13,9 @@ export default {
   methods: {
     alertMsg() {
       this.$mimialert('这是一条消息提示')
+    },
+    msg() {
+      this.$msg('这是条新的测试消息！！！！！！！')
     }
   }
 }

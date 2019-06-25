@@ -2,7 +2,6 @@
 
 // 导入单个组件
 import AlertMsg from './minialert/index'
-
 // 以数组的结构保存组件，便于遍历
 const components = []
 
@@ -15,7 +14,7 @@ const install = function (Vue) {
     Vue.component(component.name, component)
   })
 
-  Vue.prototype.$message = AlertMsg;
+  Vue.prototype.$alertMsg = AlertMsg;
 
 }
 
