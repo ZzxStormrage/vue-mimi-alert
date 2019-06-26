@@ -16,10 +16,9 @@ const alertMsg = function (options) {
     };
   }
 
-  let userOnClose = options.onClose;
   let id = 'message_' + count++;
   options.onClose = function () {
-    alertMsg.close(id, userOnClose)
+    alertMsg.close(id)
   }
 
   instance = new MsgConstructor({
@@ -40,27 +39,22 @@ const alertMsg = function (options) {
   return instance
 }
 
-alertMsg.close = function (id, userOnClose) {
+alertMsg.close = function (id) {
   let len = instance_list.length
   let index = -1
   for (let i = 0; i < len; i++) {
-
     if (id === instance_list[i].id) {
       index = i
-      console.log(index);
-      if (typeof userOnClose === 'function') {
-        userOnClose(instance_list[i]);
-      }
       instance_list.splice(i, 1)
     }
     break
   }
-
-  // for (let i = index; i < len.length - 1; i++) {
-  //   // const element = array[i];
-
-  // }
-
+  if (len <= 1 || index === -1) return
+  const removedHeight = instance_list[index].$el.offsetHeight
+  for (let i = index; i < len - 1; i++) {
+    let dom = instance_list[i].$el
+    dom.style['top'] = parseInt(dom.style['top']) - removedHeight + 6 + 'px';
+  }
 }
 
 

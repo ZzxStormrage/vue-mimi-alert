@@ -17,8 +17,7 @@ export default {
       el_offset: 20,
       duration: 2000,
       timer: null,
-      closed: false,
-      onClose: null
+      closed: false
     }
   },
   components: {},
