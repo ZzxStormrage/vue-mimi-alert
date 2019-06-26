@@ -1,29 +1,18 @@
-# vue-mimi-alert
-
-## Project setup
-```
-npm install
+## Install
+```shell
+npm install vue-mimi-alert -S
 ```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
+## Quick Start
+``` javascript
+import Vue from 'vue'
+import AlertMsg from 'vue-mimi-alert'
+
+Vue.use(AlertMsg)
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
 
-### Run your tests
+## User
+``` javascript
+this.$alertMsg('see Something')
 ```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
