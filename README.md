@@ -12,7 +12,7 @@ Vue.use(AlertMsg)
 ```
 
 
-## User
+## Use
 ``` javascript
-this.$alertMsg('see Something')
+this.$alertMsg('See Something')
 ```
