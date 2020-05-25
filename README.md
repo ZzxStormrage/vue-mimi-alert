@@ -1,6 +1,6 @@
 ## Install
 ```shell
-npm install vue-mimi-alert -S
+cnpm install vue-mimi-alert -S
 ```
 
 ## Quick Start
