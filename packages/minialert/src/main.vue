@@ -71,10 +71,10 @@ export default {
 
 <style scoped lang="scss">
 .alert-message {
-  // min-width: 100px;
+  min-width: 100px;
   box-sizing: border-box;
   border-radius: 2px;
-  position: absolute;
+  position: fixed;
   left: 50%;
   top: 20px;
   height: 35px;
