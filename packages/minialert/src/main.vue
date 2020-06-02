@@ -69,7 +69,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .alert-message {
   min-width: 100px;
   box-sizing: border-box;
