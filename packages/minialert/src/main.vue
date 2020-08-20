@@ -1,3 +1,9 @@
+<!--
+ * @Author: zzx
+ * @Date: 2020-05-27 15:36:52
+ * @LastEditTime: 2020-08-20 18:19:21
+ * @FilePath: /vue-mimi-alert/packages/minialert/src/main.vue
+-->
 <template>
   <transition name="message-fade" @after-leave="handleAfterLeave">
     <div v-show="show" :style="positionStyle" :class="['alert-message']"
@@ -87,6 +93,7 @@ export default {
   padding: 3px 15px;
   display: flex;
   align-items: center;
+  z-index: 8090;
 }
 .message-fade-enter,
 .message-fade-leave-active {
